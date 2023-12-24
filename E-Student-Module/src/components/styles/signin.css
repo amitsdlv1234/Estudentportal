@@ -1,0 +1,109 @@
+.sign-in {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    background-color: rgba(95, 188, 250, 0.39);
+    margin: 0;
+    /* Remove margin */
+    overflow: hidden;
+    /* Hide overflow */
+}
+
+.login_container {
+    height: 70vh;
+    background-color: blue;
+    width: 416px;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+    padding-left: 55px;
+    padding-right: 55px;
+    padding-bottom: 30px;
+    padding-top: 45px;
+}
+
+.login {
+    width: 100%;
+}
+
+.login-title {
+    display: block;
+    font-family: SourceSansPro-Bold;
+    font-size: 30px;
+    color: #77120c;
+    line-height: 1.2;
+    text-align: center;
+    padding-bottom: 37px;
+}
+
+.input100 {
+    font-family: SourceSansPro-Bold;
+    font-size: 16px;
+    color: #750e04;
+    line-height: 1.2;
+    display: block;
+    width: 85%;
+    height: 62px;
+    background: transparent;
+    padding: 0 20px 0 23px;
+}
+
+.focus {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    border: 1px solid #d3d3d3;
+}
+
+.loginbtn {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.loginbutton {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    min-width: 160px;
+    height: 50px;
+    background-color: #77120c;
+    font-family: SourceSansPro-SemiBold;
+    font-size: 14px;
+    color: #ffffff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    margin: 20px;
+
+}
+
+.login-img {
+    text-align: center;
+    margin: 10px;
+}
+
+.login-imgg {
+    height: 40%;
+    width: 40%;
+
+}
+
+.login_input {
+    margin: 10px;
+}

@@ -1,0 +1,32 @@
+.Navigate {
+    margin: auto;
+    margin-top: 5%;
+    justify-content: center;
+    width: 80vw;
+    height: 60vh;
+    gap: 12px;
+    font-size: 20px;
+    display: grid;
+    background-color: #e9e7ff6b;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.N_button {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    color: #333333;
+    padding: 10px 15px;
+    background-color: rgba(191, 191, 191, 0.158);
+}
+
+.N_button:hover {
+    background-color: rgb(255, 255, 255);
+    cursor: grab;
+    color: black;
+}
+
+.NV_div {
+    margin: 10px;
+
+}
