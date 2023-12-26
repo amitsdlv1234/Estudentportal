@@ -10,7 +10,7 @@ export const Home = () => {
     const move = useNavigate();
 
     const handleRegistration = () => {
-        move(`/${userroll}/StudentDetail`);
+        move(`/${userroll}/AcademicSemesterPersent`);
     }
     const handleprofile = () => {
         move(`/profiledata/${userroll}`);

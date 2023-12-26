@@ -132,57 +132,21 @@ export const StudentAddress = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-export const SemesterMarks = async (req, res) => {
+export const getsemesterMarks = async (req, res) => {
     try {
-        const connection = await dbConnection();
-        
-        // Check if all required parameters are present in the request body
-        const requiredParams = [];
-
-        const user = req.body;
-        console.log(user);
-        const {RollNo} = req.params;
-        // console.log("forLOop");
-        for (const param of requiredParams) {
-            if (user[param] === undefined) {
-                console.log(`Warning: ${param} is undefined in the user object.`);
-                user[param] = null;
-            }
-        }
-        
-        // Insert data into the table
-        const [result, fields] = await connection.execute(`
-        INSERT INTO SemesterMarks (
-            RollNo,
-            I_Sem,
-            II_Sem,
-            III_Sem,
-            IV_Sem,
-            V_Sem,
-            VI_Sem,
-            VII_Sem,
-            VIII_Sem
-        ) 
-        VALUES (?,?, ?, ?, ?, ?, ?, ?, ?);
-        `,
-            [   RollNo,
-                user.I_Sem,
-            user.II_Sem,
-            user.III_Sem,
-            user.IV_Sem,
-            user.V_Sem,
-            user.VI_Sem,
-            user.VII_Sem,
-            user.VIII_Sem]);
-
-        // Check if the insertion was successful
+        const { RollNo } = req.params;
         console.log(RollNo);
-        if (result.affectedRows === 1) {
-            // User data successfully inserted
-            return res.status(200).json({ message: 'Marks added successfully!' });
+        const connection = await dbConnection();
+        const [result, fields] = await connection.execute(`SELECT * FROM SemesterMarks WHERE RollNo=?`, [RollNo]);
+        console.log(result);
+        // Check if any rows were returned
+        if (result.length > 0) {
+            // Rows found, return the data
+            
+            return res.status(200).json({ message: 'Marks retrieved successfully!', result });
         } else {
-            // No rows were affected, indicating the insertion failed
-            return res.status(500).json({ error: 'Failed to add Marks.' });
+            // No rows found
+            return res.status(404).json({ message: 'No marks found for the specified RollNo.' });
         }
 
         // Release the connection back to the pool
@@ -192,6 +156,69 @@ export const SemesterMarks = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+
+export const SemesterMarks = async (req, res) => {
+    try {
+        const connection = await dbConnection();
+        
+        // Check if all required parameters are present in the request body
+        const requiredParams = ['I_Sem', 'II_Sem', 'III_Sem', 'IV_Sem', 'V_Sem', 'VI_Sem', 'VII_Sem', 'VIII_Sem'];
+
+        const user = req.body;
+        const { RollNo } = req.params;
+
+        // Validate if all required parameters are present in the request body
+        for (const param of requiredParams) {
+            if (user[param] === undefined) {
+                console.log(`Warning: ${param} is undefined in the user object.`);
+                user[param] = null;
+            }
+        }
+        
+        // Use INSERT ... ON DUPLICATE KEY UPDATE to insert or update data
+        const [result, fields] = await connection.execute(`
+            INSERT INTO SemesterMarks (
+                RollNo,
+                I_Sem,
+                II_Sem,
+                III_Sem,
+                IV_Sem,
+                V_Sem,
+                VI_Sem,
+                VII_Sem,
+                VIII_Sem
+            ) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON DUPLICATE KEY UPDATE
+                I_Sem = VALUES(I_Sem),
+                II_Sem = VALUES(II_Sem),
+                III_Sem = VALUES(III_Sem),
+                IV_Sem = VALUES(IV_Sem),
+                V_Sem = VALUES(V_Sem),
+                VI_Sem = VALUES(VI_Sem),
+                VII_Sem = VALUES(VII_Sem), 
+                VIII_Sem = VALUES(VIII_Sem);
+        `,
+            [RollNo, user.I_Sem, user.II_Sem, user.III_Sem, user.IV_Sem, user.V_Sem, user.VI_Sem, user.VII_Sem, user.VIII_Sem]);
+
+        // Check if the insertion or update was successful
+        if (result.affectedRows === 1) {
+            // User data successfully inserted or updated
+            return res.status(200).json({ message: 'Marks added/updated successfully!' });
+        } else {
+            // No rows were affected, indicating the insertion or update failed
+            return res.status(500).json({ error: 'Failed to add/update Marks.' });
+        }
+
+        // Release the connection back to the pool
+        connection.release();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
 
 export const SubjectDetails = async (req, res) => {
     try {
@@ -531,22 +558,25 @@ export const getStudentTimeTable = async (req, res) => {
         // Fetch data using a JOIN operation
         const [rows, fields] = await connection.execute(`
         SELECT
-        t.Name AS TeacherName,
-        s.SubjectName,
-        tt.DayofWeek,
-        tt.PeriodNumber
-    FROM
-        timetable AS tt
-    JOIN
-        teachers AS t ON tt.TeacherID = t.TeacherID
-    JOIN
-        subjects AS s ON tt.SubjectID = s.SubjectID
-    JOIN
-        branches AS b ON tt.BranchID = b.BranchID
+     tt.TimeTableID,
+    t.Name AS TeacherName,
+    s.SubjectName,
+    tt.DayOfWeek,
+    tt.PeriodNumber,
+    b.BranchName,
+    s.TeachingSemester
+FROM
+    Timetable AS tt
+JOIN
+    Teachers AS t ON tt.TeacherID = t.TeacherID
+JOIN
+    Subjects AS s ON tt.SubjectID = s.SubjectID
+JOIN
+    branches AS b ON tt.BranchID = b.BranchID
     WHERE
-        b.BranchName = ?
-        AND s.TeachingSemester = ?;
-`,[department,semester]);
+        BranchName = ?
+        AND TeachingSemester = 2;
+`,[department]);
     
    
   // Close the MySQL connection
@@ -571,22 +601,27 @@ export const getStudentAssignment = async (req, res) => {
         // Fetch data using a JOIN operation
         const [rows, fields] = await connection.execute(`
         SELECT
-    at.AssignmentId,
-    at.SubId,
-    t.Name AS TeacherName,
-    at.DateofSubmit,
-    at.FilePath,
-    as1.Status
-FROM
-    AssignmentTable AS at
-JOIN
-    AssignmentStatus AS as1 ON at.AssignmentId = as1.AssignmentId
-JOIN
-    Teachers AS t ON at.TeacherId = t.TeacherID
-WHERE
-    at.Department = ? 
-    AND at.Semester = ?;
-`,[department,semester]);
+       
+        at.AssignmentId,
+        at.Semester,
+        at.Department,
+        t.Name AS TeacherName,
+        s.SubjectName,
+        at.DateofSubmit,
+        at.FilePath,
+        as1.Status
+    FROM
+        AssignmentTable AS at
+    JOIN
+        AssignmentStatus AS as1 ON at.AssignmentId = as1.AssignmentId
+    JOIN
+        Teachers AS t ON at.TeacherId = t.TeacherID
+        JOIN
+        subjects AS s ON at.SubId = s.SubjectId
+    WHERE
+        at.Department = ? AND at.Semester=?`,[department,semester] ); 
+    
+
     
    
   // Close the MySQL connection

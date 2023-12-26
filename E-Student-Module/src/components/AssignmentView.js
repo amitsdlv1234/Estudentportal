@@ -33,9 +33,10 @@ const StudentData = () => {
     // Assuming you have an API endpoint to fetch student data by RollNo
     const fetchStudentData = async () => {
       try {
-        const response = await StudentAssignment(department,semester);
+        const res = await StudentAssignment(department,semester);
         // const data = await response.json();
-        // setStudentData(data);
+        setStudentData(res.data);
+        console.log(res.data);
       } catch (error) {
         console.error('Error fetching student data:', error);
       }
@@ -55,10 +56,8 @@ const StudentData = () => {
           <thead>
             <tr>
               <th>AssignmentId</th>
-              <th>RollNo</th>
-              <th>TeacherId</th>
-              <th>SubjectId</th>
-              <th>DateofEsu</th>
+              <th>TeacherName</th>
+              <th>SubjectName</th>
               <th>DateofSubmit</th>
               <th>Status</th>
             </tr>
@@ -67,10 +66,8 @@ const StudentData = () => {
             {studentData.map((assignment) => (
               <tr key={assignment.AssignmentId}>
                 <td>{assignment.AssignmentId}</td>
-                <td>{assignment.RollNo}</td>
-                <td>{assignment.TeacherId}</td>
-                <td>{assignment.SubjectId}</td>
-                <td>{assignment.DateofEsu}</td>
+                <td>{assignment.TeacherName}</td>
+                <td>{assignment.SubjectName}</td>
                 <td>{assignment.DateofSubmit}</td>
                 <td>{assignment.Status}</td>
               </tr>

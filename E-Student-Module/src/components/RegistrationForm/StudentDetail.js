@@ -40,9 +40,9 @@ function MyForm() {
         e.preventDefault();
         console.log(formData);
         try {
-            const response = await StudentDetail(RollNo,formData);
+            const response = await StudentDetail(formData.EnrollmentNo,formData);
             console.log(response.data);
-            move(`/${RollNo}/StudentAddress`);
+            move(`/${formData.EnrollmentNo}/StudentAddress`);
         } catch (error) {
             console.error('Error submitting form data:', error);
         }
@@ -53,7 +53,7 @@ function MyForm() {
             <h4 className='p_h4'>Personal Information </h4>
             <div></div>
            
-            <div className="p_entry">Enrollment No.:</div>
+            <div className="p_entry">Roll No:</div>
             <input className='p_in' type='tel' name="EnrollmentNo" value={formData.EnrollmentNo} onChange={handleChange} />
 
             <div className="p_entry">Student Name (नाम)</div>

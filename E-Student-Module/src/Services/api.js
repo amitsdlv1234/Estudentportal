@@ -31,6 +31,15 @@ export const StudentAddress = async (RollNo,formData) => {
       throw error; // Re-throw the error so it can be caught by the caller
     }
   };
+  export const getsemesterMarks = async (RollNo) => {
+    try {
+      const response = await axios.get(`${usersUrl}/${RollNo}/getsemesterMarks`);
+      return response;
+    } catch (error) {
+      console.error('Error fetching users Calling on SemesterMarks API:', error);
+      throw error; // Re-throw the error so it can be caught by the caller
+    }
+  };
   export const SubjectDetails = async (RollNo,formData) => {
     try {
       const response = await axios.post(`${usersUrl}/${RollNo}/SubjectDetails`, formData);

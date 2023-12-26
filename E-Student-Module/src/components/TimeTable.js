@@ -43,6 +43,8 @@ const Timetable = () => {
         // Fetch timetable data based on department and semester
         const res = await getTimeTable(department,semester);
         setTimetableData(res.data);
+        console.log(res.data);
+        // console.log(timetableData[0].DayOfWeek);
       } catch (error) {
         console.error('Error fetching timetable:', error);
       }
@@ -52,7 +54,7 @@ const Timetable = () => {
    
 useEffect(()=>{
     console.log(department,semester);
-    console.log()
+
 })
 
   return (
@@ -62,7 +64,6 @@ useEffect(()=>{
         <table>
           <thead>
             <tr>
-              <th>TimetableID</th>
               <th>TeacherName</th>
               <th>SubjectName</th>
               <th>DayOfWeek</th>
@@ -70,9 +71,8 @@ useEffect(()=>{
             </tr>
           </thead>
           <tbody>
-            {timetableData.map((item) => (
-              <tr key={item.TimetableID}>
-                <td>{item.TimetableID}</td>
+            {timetableData.map((item,index) => (
+              <tr key={index}>
                 <td>{item.TeacherName}</td>
                 <td>{item.SubjectName}</td>
                 <td>{item.DayOfWeek}</td>

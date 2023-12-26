@@ -1,5 +1,5 @@
 import express from "express";
-import { StudentDetail,StudentAddress, SemesterMarks,SubjectDetails,SemesterSubject,StudentProfile,getStudentAddress,getStudentDocuments,getStudentAttendance,getStudentSeme,getStudentDepart,getStudentTimeTable,getStudentAssignment} from "../controllers/UserController.js";
+import { StudentDetail,StudentAddress, SemesterMarks,SubjectDetails,SemesterSubject,StudentProfile,getStudentAddress,getStudentDocuments,getStudentAttendance,getStudentSeme,getStudentDepart,getStudentTimeTable,getStudentAssignment,getsemesterMarks} from "../controllers/UserController.js";
 import fileUploadMiddleware from "../middlewartes/fileUploadMiddleware.js"
 import { StudentDocuments } from "../controllers/studentDocuments.js"; 
 
@@ -18,5 +18,6 @@ router.get('/:RollNo/:Month/:Year/:Semester/StudentAttendance', getStudentAttend
 router.post('/:RollNo/StudentDetail', StudentDetail);
 router.post('/:RollNo/StudentAddress', StudentAddress);
 router.post('/:RollNo/SemesterMarks', SemesterMarks);
+router.get('/:RollNo/getsemesterMarks', getsemesterMarks);
 
 export default router;

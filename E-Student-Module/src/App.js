@@ -35,7 +35,7 @@ function App() {
           <Routes>
             <Route />
             <Route path='/form' element={<MyForm />}></Route>
-            <Route path='/:RollNo/StudentDetail' element={<StudentDetail/>}></Route>
+            <Route path='/StudentDetail' element={<StudentDetail/>}></Route>
             <Route path='/:RollNo/StudentDocuments' element={<StudentDocuments/>}></Route>
             <Route path='/:RollNo/StudentAddress' element={<StudentAddress/>}></Route>
             <Route path='/:RollNo/AcademicSemesterPersent' element={<AcademicSemesterPersent/>}></Route>

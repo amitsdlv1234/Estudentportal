@@ -12,6 +12,10 @@ export const Sign = () => {
         console.log(userroll, userdob)
         move(`/home/${userroll}`);
     }
+    const getRegister = () => {
+        // console.log(userroll, userdob)
+        move(`/StudentDetail`);
+    }
 
     return (
         <>
@@ -40,9 +44,11 @@ export const Sign = () => {
 
                             <div className='loginbtn'>
                                 <button className='loginbutton' title='"Click here to login. (लॉगिन  करने की लिए क्लिक करें।)"' onClick={handleSubmit}>लॉगिन करें</button>
+                                <button onClick={getRegister}>Click For New Registration</button>
                             </div>
-
+                           
                         </div>
+                   
                     </div>
                 </div>
 
