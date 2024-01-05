@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { StudentDepart,StudentSeme ,StudentAssignment} from '../Services/api';
+import { StudentDepart, StudentSeme, StudentAssignment } from '../Services/api';
 
 const StudentData = () => {
   const [studentData, setStudentData] = useState(null);
-  const { userroll} = useParams();
-  const [department, setDepartment] = useState({Branch:''});
-  const [semester, setSemester] = useState({CurrentSemester:''});
-  
+  const { userroll } = useParams();
+  const [department, setDepartment] = useState({ Branch: '' });
+  const [semester, setSemester] = useState({ CurrentSemester: '' });
+
 
   // Fetch department and semester based on student roll number
   useEffect(() => {
@@ -24,7 +24,7 @@ const StudentData = () => {
       setDepartment(studentDepartment.data[0].Branch);
       setSemester(studentSemester.data[0].CurrentSemester);
       // console.log(studentDepartment.data,studentSemester.data);
-     
+
     } catch (error) {
       console.error('Error fetching student information:', error);
     }
@@ -33,7 +33,7 @@ const StudentData = () => {
     // Assuming you have an API endpoint to fetch student data by RollNo
     const fetchStudentData = async () => {
       try {
-        const res = await StudentAssignment(department,semester);
+        const res = await StudentAssignment(department, semester);
         // const data = await response.json();
         setStudentData(res.data);
         console.log(res.data);
@@ -43,10 +43,10 @@ const StudentData = () => {
     };
 
     fetchStudentData();
-  }, [department,semester]);
-// 
-    useEffect(()=>{
-      console.log(department,semester);
+  }, [department, semester]);
+  // 
+  useEffect(() => {
+    console.log(department, semester);
   })
 
   return (

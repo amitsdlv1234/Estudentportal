@@ -11,8 +11,9 @@ export const StudentDetail = async (req, res) => {
         const requiredParams = [];
 
         const user = req.body;
-        const {RollNo} = req.params;
-        // console.log(user);
+        const RollNo = req.body.RollNo;
+        console.log(user);
+        console.log(RollNo);
         // console.log("forLOop");
         for (const param of requiredParams) {
             if (user[param] === undefined) {

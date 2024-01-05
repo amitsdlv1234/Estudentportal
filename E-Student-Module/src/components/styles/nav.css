@@ -1,11 +1,11 @@
 .logo img {
-    width: 600px;
+    width: 950px;
+    height: 80px;
+    margin-left: 22%;
 }
 
 nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+
     font-family: "Segoe UI";
     position: fixed;
     margin: 0px;
@@ -17,7 +17,15 @@ nav {
 
 .right ul {
     display: flex;
-    gap: 34px;
+    gap: 44px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding-bottom: 8px;
+    padding-top: 3px;
+    background-color: #af0a0ae0;
+    color: white;
+    font-size: larger;
+    font-weight: bold;
 }
 
 .right ul li {
