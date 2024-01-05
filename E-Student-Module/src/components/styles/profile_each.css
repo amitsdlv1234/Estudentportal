@@ -1,23 +1,24 @@
 .p_greedo {
-
     margin: auto;
-    margin-top: 5%;
+    margin-top: 8%;
     justify-content: center;
     width: 80vw;
     font-size: 20px;
     display: grid;
     grid-gap: 2px;
     grid-template-columns: 1fr 1fr;
-
 }
 
+.navv {
+    margin: auto
+}
 
 .p_in {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 20px;
     border: 2px solid black;
     color: #333333;
-    background-color: #e9e7ff6b;
+    background-color: #d80000;
     padding: 10px 15px;
 }
 
@@ -26,11 +27,12 @@
     font-size: 20px;
     border: 2px solid black;
     color: #333333;
-    background-color: #e3dedee6;
+    background-color: #e9e7ff6b;
     padding: 10px 15px;
 }
 
 .p_Top {
+    margin-top: 80px;
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 1;
@@ -94,7 +96,7 @@
     font-size: 20px;
     border: 2px solid black;
     color: #333333;
-    background-color: #e9e7ff6b;
+    background-color: rgb(240 255 254 / 84%);
     padding: 10px 15px;
 }
 
@@ -174,4 +176,11 @@
     border: 2px solid;
     margin: 0;
     padding: 20px;
+}
+
+.nothing {
+    text-align: center;
+    margin-top: 250px;
+    font-size: 25px;
+    font-family: roboto;
 }

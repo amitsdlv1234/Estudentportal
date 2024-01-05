@@ -12,9 +12,10 @@ import {
   styled,
   Box
 } from '@mui/material';
-import { getAttendance} from '../Services/api.js';
+import { getAttendance } from '../Services/api.js';
 // import { Link } from 'react-router-dom';
 import { useReactToPrint } from 'react-to-print';
+import Nav from './Nav.js';
 
 const StyledTable = styled(Table)`
   width: 95%;
@@ -41,8 +42,6 @@ const TBody = styled(TableRow)`
 const Filterbox = styled(FormGroup)`
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
-  background: rgb(167 77 77);
   margin: 0px 2px;
   padding: 5px;
   position: fixed;
@@ -62,35 +61,38 @@ const Filterbox = styled(FormGroup)`
 
 function AllUser() {
   const [users, setUsers] = useState([]);
-  const { userroll,Year, Month ,Semester} = useParams();
+  const { userroll, Year, Month, Semester } = useParams();
 
   useEffect(() => {
     getAllUsers();
-  }, [Month, Year,Semester]);
+  }, [Month, Year, Semester]);
 
   const getAllUsers = async () => {
     try {
-        console.log(userroll,Month, Year,Semester)
-      let res = await getAttendance(userroll,Month, Year,Semester);
+      console.log(userroll, Month, Year, Semester)
+      let res = await getAttendance(userroll, Month, Year, Semester);
       setUsers(res.data);
       console.log(res.data);
     } catch (error) {
       console.error('Error fetching users:', error);
     }
   };
-  
+
   const TableRef = React.createRef();
 
   const handlePrint = useReactToPrint({
     content: () => TableRef.current,
   });
 
- useEffect(()=>{
+  useEffect(() => {
     console.log('Fetched users:', users);
- },[users]);
+  }, [users]);
 
   return (
     <>
+
+      <Nav />
+
       <Filterbox>
         <Button
           variant="contained"
@@ -100,10 +102,9 @@ function AllUser() {
           Print
         </Button>
       </Filterbox>
-      <Box style={{marginTop:"50px"}} ref={TableRef}> <h2 style={{marginLeft:"20%"}}>
-        Dr. Ambedkar Institute Of Technology for Handicapped Kanpur
-        </h2>
-      
+      <Box style={{ marginTop: "150px" }} ref={TableRef}>
+
+
         <StyledTable>
           <TableHead>
             <THead>

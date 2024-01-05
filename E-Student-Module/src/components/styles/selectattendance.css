@@ -1,0 +1,38 @@
+.selection {
+    margin-left: 35%;
+    background-color: #9df9e787;
+    width: 400px;
+    height: 400px;
+    border: 1px solid green;
+    margin-top: 150px;
+    text-align: center;
+}
+
+.lab {
+    margin: 7px;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.btnn {
+    margin: 10px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: rgb(96, 39, 12);
+    font-size: larger;
+    color: white;
+    margin-top: 75px;
+}
+
+.i-pp {
+    width: 125px;
+    height: 25px;
+    border-radius: 3px;
+}
+
+.s-sem {
+    margin-top: 12%;
+    font-family: roboto;
+
+}
