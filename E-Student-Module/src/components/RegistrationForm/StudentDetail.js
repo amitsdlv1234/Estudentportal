@@ -7,25 +7,25 @@ import { StudentDetail } from '../../Services/api';
 import Nav from '../Nav';
 
 function MyForm() {
-    // const { RollNo } = useParams();
+    // const {RollNo} = useParams();
     const move = useNavigate();
     const [formData, setFormData] = useState({
         RollNo:Number,
-        EnrollmentNo: Number,
-        Year: Number,
-        Branch: String,
-        Gender: String,
-        StudentName: String,
-        Dob: String,
-        Email_ID: Number,
-        StudentID_No: Number,
-        Father_Name: String,
-        Mather_Name: String,
-        FID_No: Number,
-        MID_No: Number,
-        Student_MNO: Number,
-        Father_MNo: Number,
-        currentyear: Number
+        EnrollmentNo:Number,
+        Year:Number,
+        Branch:String,
+        Gender:String,
+        StudentName :String,
+        Dob:String, 
+        Email_ID : Number,
+        StudentID_No :Number,
+        Father_Name :String,
+        Mather_Name :String,
+        FID_No :Number,
+        MID_No :Number,
+        Student_MNO :Number,
+        Father_MNo :Number,
+        currentyear:Number
 
     });
 
@@ -42,7 +42,7 @@ function MyForm() {
         e.preventDefault();
         console.log(formData);
         try {
-            const response = await StudentDetail(formData.RollNo, formData);
+            const response = await StudentDetail(formData.RollNo,formData);
             console.log(response.data);
             move(`/${formData.RollNo}/StudentAddress`);
         } catch (error) {
@@ -51,18 +51,15 @@ function MyForm() {
     };
     return (
         <>
-            <div>
-                <Nav />
-            </div>
-            <div className="p_greedo">
-                <h3 className="p_Top">My Profile (मेरी प्रोफाइल)</h3>
-                <h4 className='p_h4'>Personal Information </h4>
-                <div></div>
-
-                <div className="p_entry">Roll No.:</div>
-                <input className='p_in' type='tel' name="RollNo" value={formData.RollNo} onChange={handleChange} />
-                <div className="p_entry">Enrollment No.:</div>
-                <input className='p_in' type='tel' name="EnrollmentNo" value={formData.EnrollmentNo} onChange={handleChange} />
+        <div className="p_greedo">
+            <h3 className="p_Top">My Profile (मेरी प्रोफाइल)</h3>
+            <h4 className='p_h4'>Personal Information </h4>
+            <div></div>
+           
+            <div className="p_entry">Roll No:</div>
+            <input className='p_in' type='tel' name="RollNo" value={formData.RollNo} onChange={handleChange} />
+            <div className="p_entry">Enrollment No:</div>
+            <input className='p_in' type='tel' name="EnrollmentNo" value={formData.EnrollmentNo} onChange={handleChange} />
 
                 <div className="p_entry">Student Name (नाम)</div>
                 <input className='p_in' type='text' name="StudentName" value={formData.StudentName} onChange={handleChange} />
