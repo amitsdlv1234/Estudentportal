@@ -306,8 +306,9 @@ function MyForm() {
                 </table>
             </div>
 
-            <button className='p_in' type="submit" onClick={handleSubmit}>Submit</button>
-
+            <div className='p_buttons'>
+            <button className='p_button' type="submit" onClick={handleSubmit}>Submit</button>
+            </div>
         </div >
     );
 

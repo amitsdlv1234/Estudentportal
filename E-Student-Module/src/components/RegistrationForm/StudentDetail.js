@@ -51,6 +51,7 @@ function MyForm() {
     };
     return (
         <>
+        <Nav/>
         <div className="p_greedo">
             <h3 className="p_Top">My Profile (मेरी प्रोफाइल)</h3>
             <h4 className='p_h4'>Personal Information </h4>
