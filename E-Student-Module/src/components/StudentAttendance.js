@@ -31,8 +31,8 @@ const StudentAttendance = () => {
       <div className='selection'>
 
         <div className='s-sem'>
-          <label className='lab'>Semester:</label>
-          <select className='i-pp'
+          <div><label className='lab'>Semester:</label></div>
+          <div className='attp'><select className='i-pp'
             name='Semester'
             onChange={(e) => setSemester(e.target.value)}
             value={Semester}
@@ -45,9 +45,10 @@ const StudentAttendance = () => {
             ))}
           </select>
         </div>
+        </div>
         <div className='s-sem'>
-          <label className='lab'>Month:</label>
-          <select className='i-pp'
+        <div>  <label className='lab'>Month:</label></div>
+        <div className='attp'>  <select className='i-pp'
             name='Month'
             onChange={(e) => setMonth(e.target.value)}
             value={Month}
@@ -60,15 +61,17 @@ const StudentAttendance = () => {
             ))}
           </select>
         </div>
+        </div>
         <div className='s-sem'>
-          <label className='lab'>Year:</label>
-          <input
-            className='i-pp'
+         <div> <label className='lab'>Year:</label></div>
+         <div className='attp'> <input
+            className='appp'
             type='text'
             name='Year'
             onChange={(e) => setYear(e.target.value)}
             value={Year}
           />
+        </div>
         </div>
         <div >
           <button className='btnn' type='submit' onClick={() => searchData()}>

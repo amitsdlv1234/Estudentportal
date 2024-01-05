@@ -4,6 +4,7 @@ import React, { useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { SemesterMarks} from '../../Services/api';
 import { useNavigate } from 'react-router-dom';
+import Nav from '../Nav';
 
 function MyForm() {
     const move = useNavigate();
@@ -65,6 +66,8 @@ function MyForm() {
     // }, []);
 
     return (
+        <>
+        <Nav/>
         <div className="p_greedo">
             <h3 className="p_Top">Semester Details (------)</h3>
             
@@ -94,10 +97,13 @@ function MyForm() {
             <input className='p_in' type="text" name="VII_Sem" placeholder='Qualifying Percent' value={formData.VII_Sem} onChange={handleChange} />
             <div className="p_entry">VIII_Sem</div>
             <input className='p_in' type="text" name="VIII_Sem"placeholder='Qualifying Percent'  value={formData.VIII_Sem} onChange={handleChange} />
-
-            <button className='p_in' type="submit" onClick={handleSubmit}>Submit</button>
-
         </div >
+        <div className='p_buttons'>
+                
+                <button className='p_button' type="submit" onClick={handleSubmit}>Submit</button>
+            </div>
+        
+        </>
     );
 
 }

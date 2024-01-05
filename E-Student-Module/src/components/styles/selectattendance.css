@@ -1,11 +1,12 @@
 .selection {
     margin-left: 35%;
-    background-color: #9df9e787;
-    width: 400px;
-    height: 400px;
+    background-color: #dfeae888;
+    width: 30vw;
+    height: 60vh;
     border: 1px solid green;
     margin-top: 150px;
     text-align: center;
+    /* background-color: purple; */
 }
 
 .lab {
@@ -13,6 +14,7 @@
     margin-right: 30px;
     margin-bottom: 20px;
     font-size: 22px;
+    /* background-color: red; */
 }
 
 .btnn {
@@ -22,17 +24,39 @@
     background-color: rgb(96, 39, 12);
     font-size: larger;
     color: white;
-    margin-top: 75px;
+    margin-top: 55px;
+    cursor: grab;
+    width: 10vw;
+}
+.btnn:hover{
+    background-color: rgb(183, 237, 237);
+    color: black;
 }
 
 .i-pp {
-    width: 125px;
-    height: 25px;
+    margin: 8px;
+  width:12vw;
+  height: 100%;
     border-radius: 3px;
+    /* background-color: blue; */
+    text-align: center;
 }
 
 .s-sem {
     margin-top: 12%;
     font-family: roboto;
 
+}
+.attp{
+    height: 30px;
+    text-align: center;
+    /* background-color: aqua; */
+}
+.appp{
+    margin: 8px;
+    width: 12vw;
+    height: 100%;
+    padding-block: 0px;
+    padding-inline: 0px;
+   text-align: center;
 }
